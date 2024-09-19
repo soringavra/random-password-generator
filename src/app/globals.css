@@ -2,26 +2,91 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer base {
+  p, label, button {
+    @apply text-neutral-600;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  h2 {
+    @apply font-karla font-semibold text-neutral-800 text-xl tracking-tight;
+  }
+
+  h1 {
+    @apply font-karla font-bold text-neutral-800 text-3xl tracking-tight;
+  }
+
+  svg {
+    @apply text-neutral-600;
+  }
+
+  input[type="text"], input[type="number"]  {
+    @apply h-9 text-neutral-600 disabled:text-neutral-400 text-lg px-3 border outline-2 outline-offset-[2px] rounded-lg placeholder:text-neutral-400 placeholder:select-none focus:outline disabled:bg-neutral-100 [appearance:textfield];
+  }
+
+  input[type="text"] {
+    @apply w-64 xs:w-full outline-indigo-500;
+  };
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    @apply m-0 appearance-none;
+  }
+
+  input[type="range"] {
+    @apply cursor-pointer appearance-none ;
+  }
+
+  input[type="range"]:focus::-webkit-slider-thumb {
+    @apply outline;
+  }
+
+  input[type="range"]::-webkit-slider-thumb {
+    @apply w-4 h-4 -mt-[7px] appearance-none outline-2 outline-offset-2 outline-indigo-500 rounded-full bg-indigo-500;
+  }
+
+  input[type="range"]::-webkit-slider-runnable-track {
+    @apply h-[1px] bg-neutral-200;
+  }
+
+  input[type="checkbox"] {
+    @apply size-4 cursor-pointer appearance-none border outline-2 outline-offset-2 outline-indigo-500 rounded focus:outline checked:border-none checked:bg-indigo-500;
+  }
+
+  input[type="radio"] {
+    @apply size-4 cursor-pointer appearance-none border outline-2 outline-offset-2 outline-indigo-500 rounded-full focus:outline checked:border-none checked:bg-indigo-500;
+  }
+
+  button {
+    @apply font-semibold select-none rounded-lg outline-2 outline-offset-[2px] outline-indigo-500 bg-white disabled:opacity-50;
+  }
+
+  button:not(.no-outline) {
+    @apply focus:outline;
+  }
+
+  ::selection {
+    @apply text-white bg-indigo-500;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
+@layer components {
+  .button-text {
+    @apply px-4 py-1.5;
+  }
+  
+  .button-filled {
+    @apply text-white bg-indigo-500;
+  }
+  
+  .button-border {
+    @apply border;
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .button-icon {
+    @apply h-9 grid place-items-center aspect-square border;
+  }
+
+  .button-active-opacity {
+    @apply opacity-50;
   }
 }

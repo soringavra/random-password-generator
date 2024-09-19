@@ -7,9 +7,18 @@ module.exports = {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      fontFamily: {
+        karla: ["var(--font-karla)"],
+        inconsolata: ["var(--font-inconsolata)"],
+      },
+      borderWidth: {
+        "DEFAULT": "1px",
+      },
+      borderColor: {
+        "DEFAULT": "#e5e5e5",
+      },
+      screens: {
+        "xs": "470px",
       },
     },
   },
