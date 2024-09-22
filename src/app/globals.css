@@ -20,7 +20,11 @@
   }
 
   input[type="text"], input[type="tel"] {
-    @apply h-9 disabled:text-neutral-400 text-lg px-3 border outline-2 outline-offset-[2px] rounded-lg placeholder:text-neutral-400 placeholder:select-none focus:outline disabled:bg-neutral-100 [appearance:textfield];
+    @apply h-9 text-lg px-3 opacity-100 border outline-2 outline-offset-[2px] rounded-lg placeholder:text-neutral-400 placeholder:select-none focus:outline [appearance:textfield];
+  }
+
+  input[type="text"].disabled-theme, input[type="tel"].disabled-theme {
+    @apply disabled:text-neutral-400 disabled:bg-neutral-100;
   }
 
   input[type="text"] {
@@ -28,7 +32,7 @@
   };
 
   input[type="range"] {
-    @apply cursor-pointer appearance-none ;
+    @apply cursor-pointer appearance-none outline-none;
   }
 
   input[type="range"]:focus::-webkit-slider-thumb {
@@ -36,7 +40,7 @@
   }
 
   input[type="range"]::-webkit-slider-thumb {
-    @apply w-4 h-4 -mt-[7px] appearance-none outline-2 outline-offset-2 outline-indigo-500 rounded-full bg-indigo-500;
+    @apply size-4 -mt-[7px] appearance-none outline-2 outline-offset-2 outline-indigo-500 rounded-full bg-indigo-500 shadow-none;
   }
 
   input[type="range"]::-webkit-slider-runnable-track {
@@ -61,6 +65,20 @@
 
   ::selection {
     @apply text-white bg-indigo-500;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    button:not(.no-outline) {
+      @apply hover:outline;
+    }
+
+    input:not(:disabled) {
+      @apply hover:outline;
+    }
+
+    input[type="range"]:hover::-webkit-slider-thumb {
+      @apply outline;
+    }
   }
 }
 

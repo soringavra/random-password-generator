@@ -9,7 +9,7 @@ import { IoIosClose } from "react-icons/io";
 import Link from "next/link";
 
 export default function Home() {
-  const [password, setPassword] = useState("hello niga");
+  const [password, setPassword] = useState("");
   const [rawPassword, setRawPassword] = useState("");
   const [length, setLength] = useState(12);
   const [letters, setLetters] = useState({
@@ -277,7 +277,7 @@ export default function Home() {
   }, [password]);
 
   return (
-    <div className="h-full grid place-items-center">
+    <div className="min-h-screen grid place-items-center bg-[url('/background.svg')] bg-center bg-fixed bg-cover">
       <div className="flex flex-col-reverse gap-2 p-4">
         {messages.help && (
           <div className="w-80 xs:w-96 h-fit p-6 border rounded-lg bg-white">
@@ -300,12 +300,12 @@ export default function Home() {
         <div className="w-full lg:w-auto">
           <div className={`${scrolled ? "drop-shadow-2xl" : ""} w-80 xs:w-auto flex flex-col gap-2 z-10 mb-2 transition-all sticky top-4`}>
             <div className="flex flex-col xs:flex-row gap-2 transition-all">
-              <input type="text" onChange={(e) => setPassword(e.target.value)} value={password} placeholder="Password" spellCheck="false" className={`${pulse ? "text-indigo-500" : "text-neutral-600"} min-w-full xs:min-w-fit font-medium tracking-widest text-center transition-colors duration-500`} />
+              <input type="text" onChange={(e) => setPassword(e.target.value)} disabled={true} value={password} placeholder="Password" spellCheck="false" className={`${pulse ? "text-indigo-500" : "text-neutral-600"} min-w-full xs:min-w-fit font-medium tracking-widest text-center bg-white transition-colors duration-500`} />
               <div className="flex flex-row gap-2">
                 <button onClick={() => {navigator.clipboard.writeText(password); setMessages(prevMessages => ({...prevMessages, copied: true}))}} title="Copy to clipboard" className={`${!password.length ? "hidden" : ""} button-icon`}>
                   <MdContentCopy />
                 </button>
-                <div className="w-full xs:w-auto flex gap-2 p-2 border outline-2 outline-offset-2 outline-indigo-500 rounded-lg bg-white focus-within:outline">
+                <div className="w-full xs:w-auto h-9 flex items-center gap-2 p-2 border outline-2 outline-offset-2 outline-indigo-500 rounded-lg bg-white focus-within:outline">
                   <button onClick={() => handleCaseChange(0)} title="Default password" className="no-outline flex justify-center flex-1 xs:flex-auto rounded-none pr-2 border-r group">
                     <RxLetterCaseCapitalize className={letters.capitalize == 0 ? "text-indigo-500" : "text-neutral-400"} />
                   </button>
@@ -354,12 +354,12 @@ export default function Home() {
                       <input type="radio" value="include" checked={letters.include} onChange={handleRadioLetters} />
                       <label>Only these letters:</label>
                     </div>
-                    <input type="text" disabled={!letters.include} onChange={(e) => handleDuplicateCharacters(e, 0)} value={letters.includeBody} placeholder="eg. abcDEF" spellCheck="false" className="w-full text-neutral-600 tracking-wider mb-2" />
+                    <input type="text" disabled={!letters.include} onChange={(e) => handleDuplicateCharacters(e, 0)} value={letters.includeBody} placeholder="eg. abcDEF" spellCheck="false" className="disabled-theme disabled-theme w-full text-neutral-600 tracking-wider mb-2" />
                     <div className="flex items-center gap-2 mb-1.5">
                       <input type="radio" value="exclude" checked={letters.exclude} onChange={handleRadioLetters} />
                       <label>All letters, except:</label>
                     </div>
-                    <input type="text" disabled={!letters.exclude} onChange={(e) => handleDuplicateCharacters(e, 1)} value={letters.excludeBody} placeholder="eg. abcDEF" spellCheck="false" className="w-full text-neutral-600 tracking-wider mb-2" />
+                    <input type="text" disabled={!letters.exclude} onChange={(e) => handleDuplicateCharacters(e, 1)} value={letters.excludeBody} placeholder="eg. abcDEF" spellCheck="false" className="disabled-theme w-full text-neutral-600 tracking-wider mb-2" />
                     <p>Frequency</p>
                     <div className="flex gap-4 mb-6 md:mb-0">
                       <input type="range" onChange={(e) => setLetters(prevLetters => ({...prevLetters, frequency: e.target.value}))} min={0.1} max={1} step={.01} value={letters.frequency} className="w-full" />
@@ -383,12 +383,12 @@ export default function Home() {
                       <input type="radio" value="include" checked={digits.include} onChange={handleRadioDigits} />
                       <label>Only these digits:</label>
                     </div>
-                    <input type="text" disabled={!digits.include} onChange={(e) => handleDuplicateCharacters(e, 2)} value={digits.includeBody} placeholder="eg. 0123" spellCheck="false" className="w-full text-neutral-600 tracking-wider mb-2" />
+                    <input type="text" disabled={!digits.include} onChange={(e) => handleDuplicateCharacters(e, 2)} value={digits.includeBody} placeholder="eg. 0123" spellCheck="false" className="disabled-theme w-full text-neutral-600 tracking-wider mb-2" />
                     <div className="flex items-center gap-2 mb-1.5">
                       <input type="radio" value="exclude" checked={digits.exclude} onChange={handleRadioDigits} />
                       <label>All digits, except:</label>
                     </div>
-                    <input type="text" disabled={!digits.exclude} onChange={(e) => handleDuplicateCharacters(e, 3)} value={digits.excludeBody} placeholder="eg. 0123" spellCheck="false" className="w-full text-neutral-600 tracking-wider mb-2" />
+                    <input type="text" disabled={!digits.exclude} onChange={(e) => handleDuplicateCharacters(e, 3)} value={digits.excludeBody} placeholder="eg. 0123" spellCheck="false" className="disabled-theme w-full text-neutral-600 tracking-wider mb-2" />
                     <p>Frequency</p>
                     <div className="flex gap-4 mb-6 md:mb-0">
                       <input type="range" onChange={(e) => setDigits(prevDigits => ({...prevDigits, frequency: e.target.value}))} min={0.1} max={1} step={.01} value={digits.frequency} className="w-full" />
@@ -412,12 +412,12 @@ export default function Home() {
                       <input type="radio" value="include" checked={symbols.include} onChange={handleRadioSymbols} />
                       <label>Only these symbols:</label>
                     </div>
-                    <input type="text" disabled={!symbols.include} onChange={(e) => handleDuplicateCharacters(e, 4)} value={symbols.includeBody} placeholder="eg. /;'!" spellCheck="false" className="w-full text-neutral-600 tracking-wider mb-2" />
+                    <input type="text" disabled={!symbols.include} onChange={(e) => handleDuplicateCharacters(e, 4)} value={symbols.includeBody} placeholder="eg. /;'!" spellCheck="false" className="disabled-theme w-full text-neutral-600 tracking-wider mb-2" />
                     <div className="flex items-center gap-2 mb-1.5">
                       <input type="radio" value="exclude" checked={symbols.exclude} onChange={handleRadioSymbols} />
                       <label>All symbols, except:</label>
                     </div>
-                    <input type="text" disabled={!symbols.exclude} onChange={(e) => handleDuplicateCharacters(e, 5)} value={symbols.excludeBody} placeholder="eg. /;'!" spellCheck="false" className="w-full text-neutral-600 tracking-wider mb-2" />
+                    <input type="text" disabled={!symbols.exclude} onChange={(e) => handleDuplicateCharacters(e, 5)} value={symbols.excludeBody} placeholder="eg. /;'!" spellCheck="false" className="disabled-theme w-full text-neutral-600 tracking-wider mb-2" />
                     <p>Frequency</p>
                     <div className="flex gap-4 mb-6 md:mb-0">
                       <input type="range" onChange={(e) => setSymbols(prevSymbols => ({...prevSymbols, frequency: e.target.value}))} min={0.1} max={1} step={.01} value={symbols.frequency} className="w-full" />

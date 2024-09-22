@@ -18,8 +18,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="h-full">
-      <body className={`${karla.variable} ${inconsolata.variable} h-full font-inconsolata antialiased bg-[url('/background.svg')] bg-fixed bg-cover`}>
+    <html lang="en" className="min-h-full">
+      <body className={`${karla.variable} ${inconsolata.variable} min-h-full h-auto font-inconsolata antialiased`}>
         {children}
       </body>
     </html>
