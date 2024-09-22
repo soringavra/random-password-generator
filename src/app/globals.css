@@ -16,21 +16,16 @@
   }
 
   svg {
-    @apply text-neutral-600;
+    @apply text-neutral-500;
   }
 
-  input[type="text"], input[type="number"]  {
-    @apply h-9 text-neutral-600 disabled:text-neutral-400 text-lg px-3 border outline-2 outline-offset-[2px] rounded-lg placeholder:text-neutral-400 placeholder:select-none focus:outline disabled:bg-neutral-100 [appearance:textfield];
+  input[type="text"], input[type="tel"] {
+    @apply h-9 disabled:text-neutral-400 text-lg px-3 border outline-2 outline-offset-[2px] rounded-lg placeholder:text-neutral-400 placeholder:select-none focus:outline disabled:bg-neutral-100 [appearance:textfield];
   }
 
   input[type="text"] {
     @apply w-64 xs:w-full outline-indigo-500;
   };
-
-  input[type="number"]::-webkit-outer-spin-button,
-  input[type="number"]::-webkit-inner-spin-button {
-    @apply m-0 appearance-none;
-  }
 
   input[type="range"] {
     @apply cursor-pointer appearance-none ;
